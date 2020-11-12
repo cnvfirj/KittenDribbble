@@ -34,6 +34,8 @@ public class MainViewModel extends ViewModel {
     }
 
     public String getmSignUp() {
+
+
         return mSignUp;
     }
 }
