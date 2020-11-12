@@ -54,7 +54,7 @@ public class MainFragment extends Fragment {
                     "client_id=8a4e6b1c8d3adca5d887b45a2147c48c11a3e4361ce5adef08964228413644a0&" +
                     "scope=public+upload";
             String register = "https://dribbble.com/oauth/signin?client_id=8a4e6b1c8d3adca5d887b45a2147c48c11a3e4361ce5adef08964228413644a0";
-            startActivityForResult(new Intent(Intent.ACTION_VIEW, Uri.parse(mViewModel.getmSignUp())),111);
+            startActivityForResult(new Intent(Intent.ACTION_VIEW, Uri.parse(url)),111);
         }else {
             MASSAGE("get data "+uri.toString());
             MASSAGE("paranetr "+uri.getQueryParameter("code"));
