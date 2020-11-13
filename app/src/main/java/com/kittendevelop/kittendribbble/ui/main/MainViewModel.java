@@ -1,8 +1,12 @@
 package com.kittendevelop.kittendribbble.ui.main;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModel;
 
-public class MainViewModel extends ViewModel {
+public class MainViewModel extends AndroidViewModel {
     // TODO: Implement the ViewModel
     private final String mSignUp = "https://dribbble.com/signup/new";
     private final String mLinkApp = "https://dribbble.com/account/applications/59798";
@@ -12,6 +16,11 @@ public class MainViewModel extends ViewModel {
     private final String mClientSecret = "4fc3c445569dbfe65998c470e88cc05fcd4872079ca1f2191eefec133895224e";
 
     private final String mAuthorize = "https://dribbble.com/oauth/authorize";
+
+
+    public MainViewModel(@NonNull Application application) {
+        super(application);
+    }
 
     public String getLinkApp() {
         return mLinkApp;

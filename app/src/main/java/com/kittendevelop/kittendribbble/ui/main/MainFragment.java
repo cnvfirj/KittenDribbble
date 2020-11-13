@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kittendevelop.kittendribbble.R;
+import com.kittendevelop.kittendribbble.ui.ViewModelFactory;
 import com.kittendevelop.kittendribbble.ui.help.ThreadTransformers;
 
 import io.reactivex.Observable;
@@ -46,27 +47,10 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        // TODO: Use the ViewModel
-        Uri uri = getActivity().getIntent().getData();
-        if(uri==null) {
-            String url = "https://dribbble.com/oauth/authorize?" +
-                    "client_id=8a4e6b1c8d3adca5d887b45a2147c48c11a3e4361ce5adef08964228413644a0&" +
-                    "scope=public+upload";
-            String register = "https://dribbble.com/oauth/signin?client_id=8a4e6b1c8d3adca5d887b45a2147c48c11a3e4361ce5adef08964228413644a0";
-            startActivityForResult(new Intent(Intent.ACTION_VIEW, Uri.parse(url)),111);
-        }else {
-            MASSAGE("get data "+uri.toString());
-            MASSAGE("paranetr "+uri.getQueryParameter("code"));
-        }
+        mViewModel = new ViewModelProvider(this, new ViewModelFactory(new MainViewModel(getActivity().getApplication())))
+                        .get(MainViewModel.class);
+
+
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        MASSAGE("request "+requestCode);
-        MASSAGE("result"+resultCode);
-        Uri uri = data.getData();
-        if(uri!=null)MASSAGE("data "+uri.toString());
-    }
 }

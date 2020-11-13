@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="register_preview">Публикуй свое творчество на</string>
+    <string name="register_disclaimer">Используя этот сервис, ты обязуешся соблюдать принципы его сообщества и соблюдать условия использования.</string>
+    <string name="register_private">Используя этот сервис, ты обязуешся соблюдать принципы сообщества.</string>
+
+
+</resources>
