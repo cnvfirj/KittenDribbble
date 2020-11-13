@@ -13,15 +13,16 @@
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:textColor="#444"
-        android:text="@string/register_preview"
+        android:text="Preview"
+        android:id="@+id/register_preview"
         android:layout_gravity="center" />
 
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/icon_dribbble"
-            android:src="@drawable/ic_dribbble_ball_mark"
+            android:id="@+id/register_mark_dribbble"
+            android:src="@drawable/ic_baseline_cloud_download_24"
             android:layout_gravity="center_horizontal"
             android:background="@android:color/transparent"
             android:clickable="true"
@@ -30,8 +31,8 @@
         <ImageView
             android:layout_width="205dp"
             android:layout_height="50dp"
-            android:id="@+id/link_dribbble"
-            android:src="@drawable/ic_dribbble_logo"
+            android:id="@+id/register_logo_dribbble"
+            android:src="@drawable/ic_baseline_cloud_download_24"
             android:layout_gravity="center_horizontal"
             android:background="@android:color/transparent"
             android:clickable="true"
