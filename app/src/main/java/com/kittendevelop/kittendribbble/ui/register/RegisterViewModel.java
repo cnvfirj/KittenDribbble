@@ -48,9 +48,9 @@ public class RegisterViewModel extends AndroidViewModel {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private void initVars(){
-        mPreviewMassage.setValue(getApplication().getString(R.string.register_preview));
-        mMark.setValue(getApplication().getDrawable(R.drawable.ic_dribbble_ball_mark));
-        mLogo.setValue(getApplication().getDrawable(R.drawable.ic_dribbble_logo));
+        if(mPreviewMassage.getValue()==null)mPreviewMassage.setValue(getApplication().getString(R.string.register_preview));
+        if(mMark.getValue()==null)mMark.setValue(getApplication().getDrawable(R.drawable.ic_dribbble_ball_mark));
+        if(mLogo.getValue()==null)mLogo.setValue(getApplication().getDrawable(R.drawable.ic_dribbble_logo));
     }
 
 //    @OnLifecycleEvent(ON_ANY)

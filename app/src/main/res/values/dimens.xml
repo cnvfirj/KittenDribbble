@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    register activity dimens -->
+    <dimen name="width_window_major_add_bitmap">90%</dimen>
+    <dimen name="width_window_minor_add_bitmap">90%</dimen>
+    <dimen name="height_window_major_add_bitmap">75%</dimen>
+    <dimen name="height_window_minor_add_bitmap">75%</dimen>
+
+</resources>

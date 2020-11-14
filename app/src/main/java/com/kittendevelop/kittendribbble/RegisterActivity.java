@@ -3,6 +3,8 @@ package com.kittendevelop.kittendribbble;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import com.kittendevelop.kittendribbble.ui.register.RegisterFragment;

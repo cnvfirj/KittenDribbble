@@ -50,7 +50,6 @@ public class MainFragment extends Fragment {
         mViewModel = new ViewModelProvider(this, new ViewModelFactory(new MainViewModel(getActivity().getApplication())))
                         .get(MainViewModel.class);
 
-
     }
 
 }
