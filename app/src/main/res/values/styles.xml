@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="contain_register_horizont">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginStart">@dimen/register_margin</item>
+        <item name="android:layout_marginEnd">@dimen/register_margin</item>
+    </style>
+
+    <style name="delimiter_register">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/register_margin</item>
+        <item name="android:layout_margin">@dimen/register_margin</item>
+        <item name="android:background">@drawable/background_delimiter</item>
+    </style>
+
+    <style name="buttons_register">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/background_buttons_register</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginBottom">@dimen/register_margin</item>
+    </style>
+
+    <style name="images_logo_register">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+</resources>

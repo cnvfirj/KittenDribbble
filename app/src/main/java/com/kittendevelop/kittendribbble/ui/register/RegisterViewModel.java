@@ -40,6 +40,9 @@ public class RegisterViewModel extends AndroidViewModel {
     private MutableLiveData<String> mPreviewMassage = new MutableLiveData<>();
     private MutableLiveData<Drawable> mMark = new MutableLiveData<>();
     private MutableLiveData<Drawable> mLogo = new MutableLiveData<>();
+    private MutableLiveData<String> mSignIn = new MutableLiveData<>();
+    private MutableLiveData<String> mSignUp = new MutableLiveData<>();
+
 
     public RegisterViewModel(@NonNull Application application) {
         super(application);
@@ -51,6 +54,9 @@ public class RegisterViewModel extends AndroidViewModel {
         if(mPreviewMassage.getValue()==null)mPreviewMassage.setValue(getApplication().getString(R.string.register_preview));
         if(mMark.getValue()==null)mMark.setValue(getApplication().getDrawable(R.drawable.ic_dribbble_ball_mark));
         if(mLogo.getValue()==null)mLogo.setValue(getApplication().getDrawable(R.drawable.ic_dribbble_logo));
+        if(mSignIn.getValue()==null)mSignIn.setValue(getApplication().getString(R.string.register_signIn));
+        if(mSignUp.getValue()==null)mSignUp.setValue(getApplication().getString(R.string.register_signUp));
+
     }
 
 //    @OnLifecycleEvent(ON_ANY)
@@ -69,5 +75,13 @@ public class RegisterViewModel extends AndroidViewModel {
 
     public MutableLiveData<Drawable> getLogo() {
         return mLogo;
+    }
+
+    public MutableLiveData<String> getSignIn() {
+        return mSignIn;
+    }
+
+    public MutableLiveData<String> getSignUp() {
+        return mSignUp;
     }
 }

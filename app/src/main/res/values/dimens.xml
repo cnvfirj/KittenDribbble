@@ -7,4 +7,6 @@
     <dimen name="height_window_major_add_bitmap">75%</dimen>
     <dimen name="height_window_minor_add_bitmap">75%</dimen>
 
+    <dimen name="register_margin">5dp</dimen>
+
 </resources>

@@ -2,6 +2,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Theme.KittenRegister" parent="Theme.AppCompat.Light.Dialog">
+<!--    <style name="Theme.KittenRegister" parent="Base.Theme.AppCompat.Dialog.FixedSize">-->
+
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -16,10 +18,10 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
 
-        <item name="windowFixedWidthMajor">@dimen/width_window_major_add_bitmap</item>
-        <item name="windowFixedWidthMinor">@dimen/width_window_minor_add_bitmap</item>
-        <item name="windowFixedHeightMajor">@dimen/height_window_major_add_bitmap</item>
-        <item name="windowFixedHeightMinor">@dimen/height_window_minor_add_bitmap</item>
+<!--        <item name="windowFixedWidthMajor">@dimen/width_window_major_add_bitmap</item>-->
+<!--        <item name="windowFixedWidthMinor">@dimen/width_window_minor_add_bitmap</item>-->
+<!--        <item name="windowFixedHeightMajor">@dimen/height_window_major_add_bitmap</item>-->
+<!--        <item name="windowFixedHeightMinor">@dimen/height_window_minor_add_bitmap</item>-->
     </style>
 
     <style name="Theme.KittenDribbbleMain" parent="Theme.MaterialComponents.DayNight.DarkActionBar">

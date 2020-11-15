@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +27,8 @@ public class RegisterFragment extends Fragment {
     private TextView mTextPreview;
     private ImageView mLogo;
     private ImageView mMark;
+    private Button mSignIn;
+    private Button mSignUp;
 
     public static RegisterFragment newInstance() {
         return new RegisterFragment();
@@ -48,6 +51,8 @@ public class RegisterFragment extends Fragment {
         mTextPreview = getView().findViewById(R.id.register_preview);
         mLogo = getView().findViewById(R.id.register_logo_dribbble);
         mMark = getView().findViewById(R.id.register_mark_dribbble);
+        mSignIn = getView().findViewById(R.id.register_signIn);
+        mSignUp = getView().findViewById(R.id.register_signUp);
         applyData();
     }
 
@@ -71,6 +76,22 @@ public class RegisterFragment extends Fragment {
                  mMark.setImageDrawable(drawable);
              }
          });
+
+         mViewModel.getSignIn().observe(this, new Observer<String>() {
+             @Override
+             public void onChanged(String s) {
+                 mSignIn.setText(s);
+             }
+         });
+
+         mViewModel.getSignUp().observe(this, new Observer<String>() {
+             @Override
+             public void onChanged(String s) {
+                 mSignUp.setText(s);
+             }
+         });
+
+
     }
 
 }

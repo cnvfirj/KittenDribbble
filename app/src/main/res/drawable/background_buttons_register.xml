@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval">
+    android:shape="rectangle">
 
-    <solid android:color="@color/gray_dribble" />
+    <solid android:color="@color/pink_dribble" />
 
     <stroke
         android:width="2dp"
-        android:color="@color/gray_dribble" />
+        android:color="@color/pink_dribble" />
 
     <padding
         android:bottom="5dp"
@@ -14,6 +14,6 @@
         android:right="5dp"
         android:top="5dp" />
 
-    <corners android:radius="5dp" />
+    <corners android:radius="10dp" />
 
 </shape>
