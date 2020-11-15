@@ -1,9 +1,12 @@
 package com.kittendevelop.kittendribbble.ui.register;
 
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.media.MediaActionSound;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +23,8 @@ import android.widget.TextView;
 import com.kittendevelop.kittendribbble.R;
 import com.kittendevelop.kittendribbble.ui.ViewModelFactory;
 
+import static com.kittendevelop.kittendribbble.ui.help.Massages.MASSAGE;
+
 public class RegisterFragment extends Fragment {
 
     private RegisterViewModel mViewModel;
@@ -29,6 +34,8 @@ public class RegisterFragment extends Fragment {
     private ImageView mMark;
     private Button mSignIn;
     private Button mSignUp;
+
+    private Observer<String> observer;
 
     public static RegisterFragment newInstance() {
         return new RegisterFragment();
@@ -45,18 +52,28 @@ public class RegisterFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this, new ViewModelFactory(new RegisterViewModel(getActivity().getApplication())))
-                .get(RegisterViewModel.class);
+
 //        getLifecycle().addObserver(mViewModel);
         mTextPreview = getView().findViewById(R.id.register_preview);
         mLogo = getView().findViewById(R.id.register_logo_dribbble);
         mMark = getView().findViewById(R.id.register_mark_dribbble);
         mSignIn = getView().findViewById(R.id.register_signIn);
         mSignUp = getView().findViewById(R.id.register_signUp);
-        applyData();
+
+//        applyObserve();
     }
 
-    private void applyData(){
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+//        mViewModel = new ViewModelProvider(this, new ViewModelFactory(new RegisterViewModel(getActivity().getApplication()))).get(RegisterViewModel.class);
+//        mViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
+
+    }
+
+
+
+    private void applyObserve(){
          mViewModel.getPreviewMassage().observe(this, new Observer<String>() {
              @Override
              public void onChanged(String s) {
@@ -77,12 +94,14 @@ public class RegisterFragment extends Fragment {
              }
          });
 
-         mViewModel.getSignIn().observe(this, new Observer<String>() {
+         observer = new Observer<String>() {
              @Override
              public void onChanged(String s) {
+                 MASSAGE("observe "+s);
                  mSignIn.setText(s);
              }
-         });
+         };
+         mViewModel.getSignIn().observe(this, observer);
 
          mViewModel.getSignUp().observe(this, new Observer<String>() {
              @Override
@@ -94,4 +113,13 @@ public class RegisterFragment extends Fragment {
 
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        clearObserve();
+    }
+
+    private void clearObserve(){
+//        mViewModel.getSignIn().removeObserver(observer);
+    }
 }
