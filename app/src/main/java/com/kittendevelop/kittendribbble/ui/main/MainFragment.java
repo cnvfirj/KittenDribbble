@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import com.kittendevelop.kittendribbble.R;
 import com.kittendevelop.kittendribbble.ui.ViewModelFactory;
 import com.kittendevelop.kittendribbble.ui.help.ThreadTransformers;
+import com.kittendevelop.kittendribbble.ui.register.RegisterActivity;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -50,6 +51,15 @@ public class MainFragment extends Fragment {
         mViewModel = new ViewModelProvider(this, new ViewModelFactory(new MainViewModel(getActivity().getApplication())))
                         .get(MainViewModel.class);
 
+
+        startActivityForResult(new Intent(getContext(),RegisterActivity.class),RegisterActivity.REQUEST_AUTH);
+
+
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        MASSAGE("fragment result "+requestCode+" data "+data.getStringExtra(RegisterActivity.RESULT_TOKEN));
+    }
 }
