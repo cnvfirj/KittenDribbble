@@ -1,10 +1,6 @@
 package com.kittendevelop.kittendribbble.ui.main;
 
-import androidx.lifecycle.ViewModelProvider;
-
-import android.app.Activity;
 import android.content.Intent;
-import android.media.MediaActionSound;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -17,23 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kittendevelop.kittendribbble.R;
-import com.kittendevelop.kittendribbble.ui.ViewModelFactory;
-import com.kittendevelop.kittendribbble.ui.help.ThreadTransformers;
-import com.kittendevelop.kittendribbble.ui.register.RegisterActivity;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Scheduler;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
+import com.kittendevelop.kittendribbble.ui.register.RegisterDialog;
 
 import static com.kittendevelop.kittendribbble.ui.help.Massages.MASSAGE;
 
 public class MainFragment extends Fragment {
 
     private MainViewModel mViewModel;
-
     public static MainFragment newInstance() {
         return new MainFragment();
     }
@@ -48,18 +34,34 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this, new ViewModelFactory(new MainViewModel(getActivity().getApplication())))
-                        .get(MainViewModel.class);
+//        mViewModel = new ViewModelProvider(this, new ViewModelFactory(new MainViewModel(getActivity().getApplication())))
+//                        .get(MainViewModel.class);
+    }
 
 
-        startActivityForResult(new Intent(getContext(),RegisterActivity.class),RegisterActivity.REQUEST_AUTH);
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        Uri uri = getActivity().getIntent().getData();
+        if(uri!=null){
+            extractData(uri);
+        }else RegisterDialog.show(getChildFragmentManager());
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        MASSAGE("fragment result "+requestCode+" data "+data.getStringExtra(RegisterActivity.RESULT_TOKEN));
+
     }
+
+    private void extractData(Uri uri){
+        MASSAGE("uri "+uri.toString());
+            requestToken(uri.getQueryParameter("code"));
+    }
+
+    private void requestToken(String code){
+        MASSAGE("code "+code);
+    }
+
+
 }

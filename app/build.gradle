@@ -29,12 +29,15 @@ android {
 
     buildFeatures {
         dataBinding true
+        viewBinding true
     }
+
 }
 repositories {
     jcenter()
     google()
 }
+
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -47,6 +50,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation "android.arch.lifecycle:extensions:1.1.1"
+    //noinspection LifecycleAnnotationProcessorWithJava8
     annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
 
 
