@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kittendevelop.kittendribbble.R;
+import com.kittendevelop.kittendribbble.ui.register.DaggerComponentRegister;
 import com.kittendevelop.kittendribbble.ui.register.RegisterDialog;
 
 import static com.kittendevelop.kittendribbble.ui.help.Massages.MASSAGE;
@@ -21,6 +22,9 @@ import static com.kittendevelop.kittendribbble.ui.help.Massages.MASSAGE;
 public class MainFragment extends Fragment {
 
     private MainViewModel mViewModel;
+
+    private RegisterDialog mDialog;
+
     public static MainFragment newInstance() {
         return new MainFragment();
     }
@@ -46,8 +50,16 @@ public class MainFragment extends Fragment {
         super.onResume();
         Uri uri = getActivity().getIntent().getData();
         if(uri!=null){
+            mDialog.dismiss();
             extractData(uri);
-        }else RegisterDialog.show(getChildFragmentManager());
+        }else {
+            if(mDialog==null) {
+                mDialog = DaggerComponentRegister.create().dialog();
+                mDialog.show(getChildFragmentManager(), "REGISTER");
+            }
+//            DaggerComponentRegister.create().dialog().show(getChildFragmentManager(),"REGISTER");
+        }
+
     }
 
     @Override

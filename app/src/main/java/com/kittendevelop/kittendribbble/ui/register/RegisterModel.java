@@ -1,6 +1,17 @@
 package com.kittendevelop.kittendribbble.ui.register;
 
+import javax.inject.Inject;
+
+import static com.kittendevelop.kittendribbble.ui.help.Massages.MASSAGE;
+
 public class RegisterModel {
+
+
+
+    @Inject
+    public RegisterModel() {
+        MASSAGE("RegisterModel init register model");
+    }
 
     public String getAuthorize() {
         return "https://dribbble.com/oauth/authorize?" +

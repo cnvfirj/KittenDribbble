@@ -16,18 +16,19 @@ import androidx.fragment.app.FragmentManager;
 import com.kittendevelop.kittendribbble.R;
 import com.kittendevelop.kittendribbble.databinding.RegisterDialogBinding;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import static com.kittendevelop.kittendribbble.ui.help.Massages.MASSAGE;
 
 public class RegisterDialog extends DialogFragment implements CheckToken{
 
+
     private RegisterPresenter mPresenter;
 
-    public static void show(FragmentManager manager){
-       RegisterDialog dialog = new RegisterDialog(new RegisterPresenter());
-       dialog.show(manager,"REGISTER");
-    }
-
+    @Inject
     public RegisterDialog(RegisterPresenter presenter) {
+        MASSAGE("RegisterDialog init register dialog");
         mPresenter = presenter;
         mPresenter.takeView(this);
     }
@@ -46,14 +47,13 @@ public class RegisterDialog extends DialogFragment implements CheckToken{
          startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        dismiss();
-    }
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        dismiss();
+//    }
 
     public void click(View view){
-        MASSAGE("click "+view.getId());
         mPresenter.clickView(view.getId());
     }
 }

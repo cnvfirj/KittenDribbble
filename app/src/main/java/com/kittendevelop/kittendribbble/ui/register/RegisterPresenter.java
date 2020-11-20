@@ -7,16 +7,20 @@ import android.view.View;
 
 import com.kittendevelop.kittendribbble.R;
 
+import javax.inject.Inject;
+
 import static com.kittendevelop.kittendribbble.ui.help.Massages.MASSAGE;
 
 public class RegisterPresenter {
-    
+
 
     private CheckToken mView;
     private RegisterModel mModel;
 
-    public RegisterPresenter( ) {
-        mModel = new RegisterModel();
+    @Inject
+    public RegisterPresenter(RegisterModel model) {
+        MASSAGE("RegisterPresenter init register presenter");
+        mModel = model;
     }
 
     public void takeView(CheckToken mView){
