@@ -1,9 +1,5 @@
 package com.kittendevelop.kittendribbble.ui.main;
 
-import android.app.Application;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModel;
 
 public class MainViewModel extends ViewModel {
@@ -12,7 +8,7 @@ public class MainViewModel extends ViewModel {
             "client_id=8a4e6b1c8d3adca5d887b45a2147c48c11a3e4361ce5adef08964228413644a0&" +
             "scope=public+upload";
 
-    private final String mDribbble = "https://dribbble.com";
+    private final String mDribbble = "https://dribbble.com/";
     private final String mSignUp = "https://dribbble.com/signup/new";
 
 

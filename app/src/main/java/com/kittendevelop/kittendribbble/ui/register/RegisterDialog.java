@@ -26,6 +26,10 @@ public class RegisterDialog extends DialogFragment implements CheckToken{
 
     private RegisterPresenter mPresenter;
 
+
+    public RegisterDialog() {
+    }
+
     @Inject
     public RegisterDialog(RegisterPresenter presenter) {
         MASSAGE("RegisterDialog init register dialog");
@@ -45,6 +49,7 @@ public class RegisterDialog extends DialogFragment implements CheckToken{
     @Override
     public void followingLink(String link) {
          startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
+         dismiss();
     }
 
 //    @Override
