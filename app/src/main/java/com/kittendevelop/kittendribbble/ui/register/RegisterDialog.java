@@ -26,20 +26,17 @@ public class RegisterDialog extends DialogFragment implements CheckToken{
 
     private RegisterPresenter mPresenter;
 
-
-    public RegisterDialog() {
-    }
-
     @Inject
     public RegisterDialog(RegisterPresenter presenter) {
         MASSAGE("RegisterDialog init register dialog");
         mPresenter = presenter;
-        mPresenter.takeView(this);
+//        mPresenter.takeView(this);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mPresenter.takeView(this);
         View v = inflater.inflate(R.layout.register_dialog,null);
         RegisterDialogBinding binding = DataBindingUtil.bind(v);
         binding.setDialog(this);

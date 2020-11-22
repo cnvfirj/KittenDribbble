@@ -23,8 +23,9 @@ public class RegisterPresenter {
         mModel = model;
     }
 
-    public void takeView(CheckToken mView){
+    public RegisterPresenter takeView(CheckToken mView){
         this.mView = mView;
+        return this;
     }
 
     @SuppressLint("NonConstantResourceId")

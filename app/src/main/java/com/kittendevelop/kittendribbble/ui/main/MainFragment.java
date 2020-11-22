@@ -34,6 +34,10 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.kittendevelop.kittendribbble.ui.help.Massages.MASSAGE;
 
@@ -88,7 +92,7 @@ public class MainFragment extends Fragment {
 
 
 
-    private void requestToken(String code){
+    private void requestOKHTTPToken(String code){
         MASSAGE("code "+code);
 
         Observable.create(new ObservableOnSubscribe<Object>() {
@@ -125,36 +129,34 @@ public class MainFragment extends Fragment {
 
     }
 
+    private void requestToken(String code){
+        MASSAGE("code "+code);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://dribbble.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        DribbbleRequests requests = retrofit.create(DribbbleRequests.class);
+        retrofit2.Call<DribbbleResponseToken> callToken = requests.callToken(
+                "8a4e6b1c8d3adca5d887b45a2147c48c11a3e4361ce5adef08964228413644a0",
+                "4fc3c445569dbfe65998c470e88cc05fcd4872079ca1f2191eefec133895224e",
+                code);
 
+        callToken.enqueue(new Callback<DribbbleResponseToken>() {
+            @Override
+            public void onResponse(retrofit2.Call<DribbbleResponseToken> call, retrofit2.Response<DribbbleResponseToken> response) {
+                MASSAGE("call token "+response.body().toString());
+                MASSAGE("field token "+response.body().getAccessToken());
+                MASSAGE("field scope "+response.body().getScope());
+                MASSAGE("field type "+response.body().getTokenType());
+            }
 
-//    private void requestToken(String code){
-//        MASSAGE("code "+code);
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("https://dribbble.com/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        DribbbleRequests requests = retrofit.create(DribbbleRequests.class);
-//        Call<DribbbleResponseToken> callToken = requests.callToken(
-//                "8a4e6b1c8d3adca5d887b45a2147c48c11a3e4361ce5adef08964228413644a0",
-//                "4fc3c445569dbfe65998c470e88cc05fcd4872079ca1f2191eefec133895224e",
-//                code);
-//
-//        callToken.enqueue(new Callback<DribbbleResponseToken>() {
-//            @Override
-//            public void onResponse(Call<DribbbleResponseToken> call, Response<DribbbleResponseToken> response) {
-//                MASSAGE("call token "+response.body().toString());
-//                MASSAGE("field token "+response.body().getAccessToken());
-//                MASSAGE("field scope "+response.body().getScope());
-//                MASSAGE("field type "+response.body().getTokenType());
-//            }
-//
-//            @Override
-//            public void onFailure(Call<DribbbleResponseToken> call, Throwable t) {
-//                    MASSAGE("error "+t.getMessage());
-//            }
-//        });
-//
-//    }
+            @Override
+            public void onFailure(retrofit2.Call<DribbbleResponseToken> call, Throwable t) {
+                    MASSAGE("error "+t.getMessage());
+            }
+        });
+
+    }
 
 
 }
