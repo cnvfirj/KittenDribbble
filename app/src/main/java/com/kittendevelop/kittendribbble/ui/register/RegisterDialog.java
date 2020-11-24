@@ -49,11 +49,6 @@ public class RegisterDialog extends DialogFragment implements CheckToken{
          dismiss();
     }
 
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        dismiss();
-//    }
 
     public void click(View view){
         mPresenter.clickView(view.getId());

@@ -24,7 +24,6 @@ import java.io.IOException;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Call;
@@ -36,7 +35,6 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
-
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.kittendevelop.kittendribbble.ui.help.Massages.MASSAGE;
@@ -44,6 +42,7 @@ import static com.kittendevelop.kittendribbble.ui.help.Massages.MASSAGE;
 public class MainFragment extends Fragment {
 
     private MainViewModel mViewModel;
+
     private RegisterDialog mDialog;
 
     public static MainFragment newInstance() {
@@ -63,14 +62,6 @@ public class MainFragment extends Fragment {
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 //        mViewModel = new ViewModelProvider(this, new ViewModelFactory(new MainViewModel(getActivity().getApplication())))
 //                        .get(MainViewModel.class);
-      getView().findViewById(R.id.button_reg).setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              mDialog = DaggerComponentRegister.create().dialog();
-              mDialog.show(getChildFragmentManager(), "REGISTER");
-          }
-      });
-
     }
 
 
@@ -79,18 +70,32 @@ public class MainFragment extends Fragment {
         super.onResume();
         Uri uri = getActivity().getIntent().getData();
         if(uri!=null){
+            mDialog.dismiss();
             extractData(uri);
+        }else {
+            if(mDialog==null) {
+                mDialog = DaggerComponentRegister.create().dialog();
+                mDialog.show(getChildFragmentManager(), "REGISTER");
+            }
+//            DaggerComponentRegister.create().dialog().show(getChildFragmentManager(),"REGISTER");
         }
 
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+    }
+
     private void extractData(Uri uri){
-        MASSAGE("extract uri "+uri.toString());
+        MASSAGE("uri "+uri.toString());
             requestToken(uri.getQueryParameter("code"));
     }
 
-
-
+    private void requestToken(String code){
+        MASSAGE("code "+code);
+    }
 
     private void requestOKHTTPToken(String code){
         MASSAGE("code "+code);
@@ -124,12 +129,12 @@ public class MainFragment extends Fragment {
             }
         }).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-        .subscribe();
+                .subscribe();
 
 
     }
 
-    private void requestToken(String code){
+    private void requestRetroToken(String code){
         MASSAGE("code "+code);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://dribbble.com/")
@@ -152,7 +157,7 @@ public class MainFragment extends Fragment {
 
             @Override
             public void onFailure(retrofit2.Call<DribbbleResponseToken> call, Throwable t) {
-                    MASSAGE("error "+t.getMessage());
+                MASSAGE("error "+t.getMessage());
             }
         });
 
