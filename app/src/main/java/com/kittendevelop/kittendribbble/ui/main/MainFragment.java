@@ -75,9 +75,8 @@ public class MainFragment extends Fragment {
         }else {
             if(mDialog==null) {
                 mDialog = DaggerComponentRegister.create().dialog();
-                mDialog.show(getChildFragmentManager(), "REGISTER");
             }
-//            DaggerComponentRegister.create().dialog().show(getChildFragmentManager(),"REGISTER");
+            mDialog.show(getChildFragmentManager(), "REGISTER");
         }
 
     }
