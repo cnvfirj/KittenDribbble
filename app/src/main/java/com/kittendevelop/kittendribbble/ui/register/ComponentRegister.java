@@ -11,6 +11,5 @@ import dagger.Component;
 @Component
 public interface ComponentRegister {
     RegisterDialog dialog();
-
     RegisterPresenter presenter();
 }
